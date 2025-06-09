@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Forca - Universidades Federais</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Jogo da Forca</h1>
+    <p class="tema"><strong>Tema:</strong> Universidades Federais</p>
+
+    <div id="palavra">_ _ _ _ _</div>
+
+    <div class="status">
+      <p>Erros: <span id="erros">0</span> / 6</p>
+    </div>
+
+    <div id="letras" class="teclado"></div>
+
+    <div id="mensagem" class="mensagem"></div>
+  </div>
+
+  <script>
+    const palavras = ["UFSC", "UFAL", "UFAM", "USP", "UFCG", "UFRJ", "UFMG", "UFPE", "UNB", "UFBA", "UFV", "UFRN"];
+    const palavra = palavras[Math.floor(Math.random() * palavras.length)];
+    let acertos = [];
+    let erros = 0;
+    const maxErros = 6;
+
+    const palavraEl = document.getElementById("palavra");
+    const letrasEl = document.getElementById("letras");
+    const mensagemEl = document.getElementById("mensagem");
+    const errosEl = document.getElementById("erros");
+
+    function atualizarPalavra() {
+      let exibicao = "";
+      for (let letra of palavra) {
+        exibicao += acertos.includes(letra) ? letra + " " : "_ ";
+      }
+      palavraEl.textContent = exibicao.trim();
+    }
+
+    function verificarLetra(letra, btn) {
+      btn.disabled = true;
+      if (palavra.includes(letra)) {
+        acertos.push(letra);
+        atualizarPalavra();
+        if (!palavra.split('').some(l => !acertos.includes(l))) {
+          mensagemEl.textContent = "🎉 Parabéns! Você acertou!";
+          desabilitarTeclado();
+        }
+      } else {
+        erros++;
+        errosEl.textContent = erros;
+        if (erros >= maxErros) {
+          mensagemEl.textContent = `❌ Você perdeu! A palavra era: ${palavra}`;
+          desabilitarTeclado();
+        }
+      }
+    }
+
+    function desabilitarTeclado() {
+      document.querySelectorAll(".letra").forEach(b => b.disabled = true);
+    }
+
+    function criarTeclado() {
+      const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      for (let letra of letras) {
+        const btn = document.createElement("button");
+        btn.textContent = letra;
+        btn.className = "letra";
+        btn.onclick = () => verificarLetra(letra, btn);
+        letrasEl.appendChild(btn);
+      }
+    }
+
+    atualizarPalavra();
+    criarTeclado();
+  </script>
+
+  <a align="center" href="jogo.html" class="voltar" title="Voltar à página principal">&#8630;</a>
+
+</body>
+</html>

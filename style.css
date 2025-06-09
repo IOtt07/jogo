@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #3a6186, #89253e);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+
+.tema {
+  margin-bottom: 20px;
+  font-style: italic;
+  font-size: 1.1em;
+}
+
+#palavra {
+  font-size: 2em;
+  letter-spacing: 10px;
+  margin: 20px 0;
+}
+
+.teclado {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.letra {
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 14px;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.letra:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.letra:disabled {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.mensagem {
+  margin-top: 25px;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.voltar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2em;
+  color: rgb(4, 22, 39);
+  text-decoration: none;
+  background-color: rgba(230, 218, 218, 0.4);
+  padding: 10px;
+  border-radius: 100%; 
+  width: 63px;
+  transition: background-color 1.5s, transform 1.5s;
+  z-index: 1500;
+}
+
+.voltar:hover {
+  background-color: rgba(79, 163, 212, 0.911);
+  transform: scale(1.1);
+}
